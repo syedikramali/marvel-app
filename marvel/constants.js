@@ -1,0 +1,9 @@
+const MAX_RECORDS = 100;
+const ALL_CHARACTERS_KEY = "all_marvel_charters";
+const LAST_FETCHED_DATE_ALL = "LAST_FETCHED_DATE_ALL";
+
+module.exports = {
+  MAX_RECORDS,
+  ALL_CHARACTERS_KEY,
+  LAST_FETCHED_DATE_ALL
+};

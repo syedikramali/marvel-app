@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Marvel API
+  version: 1.0.0
+  description: Character of Marvel
+  contact:
+    name: Ali Syed
+    email: syedikramally@outlook.com
+servers:
+  - description: ""
+    url: ""
+paths:
+  /characters:
+    get:
+      summary: Get All character IDs from Marvel public API
+      tags: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ""
+                example:
+                  - 1009329
+                items:
+                  type: integer
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ""
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - statusCode
+                  - message
+                x-examples:
+                  example-1:
+                    statusCode: 404
+                    message: Character not found
+              examples:
+                resp:
+                  value:
+                    statusCode: 404
+                    message: Character not found
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              examples:
+                resp:
+                  value:
+                    statusCode: 500
+                    message: string
+      operationId: get-characters
+      parameters: []
+      description: Get All List of character IDs from Marvel public API
+    parameters: []
+  "/characters/{characterId}":
+    parameters:
+      - schema:
+          type: string
+        name: characterId
+        in: path
+        required: true
+    get:
+      summary: Get Marvel Hero by character ID
+      tags: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              examples:
+                resp:
+                  value:
+                    id: 1
+                    name: Spiderman
+                    description: Spider Man is ...
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              examples:
+                resp:
+                  value:
+                    statusCode: 404
+                    message: string
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              examples:
+                resp:
+                  value:
+                    statusCode: 500
+                    message: string
+      operationId: get-character-id
+      description: Get Marvel Hero details by character ID

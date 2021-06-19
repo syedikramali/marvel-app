@@ -1,0 +1,27 @@
+{
+  "name": "marvel-xendit",
+  "version": "1.0.0",
+  "description": "Marvel characters API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "mocha --timeout 25000"
+  },
+  "author": "Ali",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "redis": "^3.0.2",
+    "dotenv": "^8.2.0",
+    "axios": "^0.21.1",
+    "util": "^0.12.3",
+    "global": "^4.4.0",
+    "md5": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "mocha": "^8.4.0",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0"
+  }
+}

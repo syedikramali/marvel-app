@@ -1,0 +1,24 @@
+Marvel Character API's
+
+Note: Marvel API only return max 100 records per request.
+If Any new record added in marvel db return status 200 or else 304 if nothing modified.
+Using redis as a cache management
+1. It is blazingly fast! After all, it has been written in C.
+2. It’s a NoSql Database. That’s Amazingly amazing!
+3. Currently, it is being used by tech-giants like GitHub,Weibo, Pinterest, Snapchat, Craigslist, Digg, StackOverflow, Flickr.
+4. In order to save your cloud database calls and eventually saving some dollars out there, you can of course opt for caching so the Redis.
+5. It is Developer friendly and by that I mean to say that Redis is being supported in most of the languages (Perks of using an Open Source Technology). Languages like JavaScript, Java, Go, C, C++, C#, Python, Objective-C, PHP and almost every famous language out there has support for this.
+Redis be like, “I’m super cool”
+6. Last and probably the very obvious point, it is open source and stable, so yeah that’s another thing to say ‘Yes’ to Redis.
+
+In our part 1 task which is GET/characters 
+        - We first check redis cache, if no data exist then we make Marvel characters api call with offset 0 and get 100 records and check total count.
+        - based on total count wrote while loop to set offset array less then total count with difference of 100.
+        - get all remaing records from Marvel and save to redis cache along with fetched date.
+        - in the next call we will check if last fetch date was 24hr ago
+            - if NO the simply return from cache
+            - if Yes then we will call Marvel characters API with offset 0 and check StatusCode if it's 304 then simply return from redis cache as there is no changes in Marvel API otherwise we will fetch all records again and save it to redis cache once again.
+
+In our part 2 task which is GET/characters/{characterid}
+        - We will check if records exist in redis cache if yes then return from cache otherwise call Marvel APi and cache that specific character.
+
